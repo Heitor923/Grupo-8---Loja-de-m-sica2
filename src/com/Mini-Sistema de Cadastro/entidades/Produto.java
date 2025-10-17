@@ -1,4 +1,4 @@
-package com.MiniSistemaDeCadastro.entidades;
+package com.lojaDeMusica.entidades;
 
 public class Produto{
     private int id;
