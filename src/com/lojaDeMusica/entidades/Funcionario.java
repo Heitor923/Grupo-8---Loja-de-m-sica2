@@ -8,6 +8,6 @@ public class Funcionario {
 
     public static void main(String[] args) {
         // prints the result of 2 + 2
-        System.out.println(add(9, 2));
+        System.out.println(add(779, 2));
     }
 }
