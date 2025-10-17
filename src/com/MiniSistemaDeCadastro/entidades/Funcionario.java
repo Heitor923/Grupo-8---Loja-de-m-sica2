@@ -1,20 +1,22 @@
 package com.MiniSistemaDeCadastro.entidades;
+
 public class Funcionario {
     private int id;
     private String nome;
     private double salario;
     private String matricula;
 
-    public Funcionario(int id, String nome, double salario, String matricula) {
-        this.id = id;
+    public Funcionario(String nome, double salario, String matricula) {
         this.nome = nome;
         this.salario = salario;
         this.matricula = matricula;
     }
+ public Funcionario() {}
 
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -45,6 +47,6 @@ public class Funcionario {
 
     @Override
     public String toString() {
-        return "ID: " + id + " | Nome: " + nome + " | Salário: " + salario + " | Matrícula: " + matricula;
+        return "ID: " + id + ", Nome: " + nome + ", Salário: " + salario + ", Matrícula: " + matricula;
     }
 }

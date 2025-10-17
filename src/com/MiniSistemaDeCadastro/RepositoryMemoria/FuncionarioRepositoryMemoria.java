@@ -2,70 +2,46 @@ package com.MiniSistemaDeCadastro.RepositoryMemoria;
 
 import com.MiniSistemaDeCadastro.entidades.Funcionario;
 import java.util.ArrayList;
-import java.util.List;
 
 public class FuncionarioRepositoryMemoria {
-
-    private final List<Funcionario> funcionarios = new ArrayList<>();
+    private ArrayList<Funcionario> funcionarios = new ArrayList<>();
     private int proximoId = 1;
 
-    // CREATE → adicionar(...): gera id, salva e retorna o objeto
-    public Funcionario adicionar(String nome, double salario, String matricula) {
-        // validações simples
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new IllegalArgumentException("Nome é obrigatório.");
-        }
-        if (salario < 0) {
-            throw new IllegalArgumentException("Salário não pode ser negativo.");
-        }
+    // adiciona o objeto e atribui o id aqui
+    public Funcionario adicionar(Funcionario f) {
+        if (f == null) throw new IllegalArgumentException("Funcionário é obrigatório");
+        if (f.getNome() == null || f.getNome().trim().isEmpty())
+            throw new IllegalArgumentException("Nome é obrigatório");
+        if (f.getSalario() < 0) throw new IllegalArgumentException("Salário inválido");
 
-        Funcionario f = new Funcionario();
-        f.setId(proximoId++);
-        f.setNome(nome.trim());
-        f.setSalario(salario);
-        f.setMatricula(matricula == null ? "" : matricula.trim());
+        f.setId(proximoId++); // AQUI o id é gerado
+        if (f.getMatricula() == null) f.setMatricula("");
         funcionarios.add(f);
         return f;
     }
 
-    // READ → listar(): retorna uma cópia da lista para não expor a lista interna
-    public List<Funcionario> listar() {
-        return new ArrayList<>(funcionarios);
-    }
+    public ArrayList<Funcionario> listar() { return funcionarios; }
 
-    // READ → buscarPorId(int id): retorna o objeto ou null
     public Funcionario buscarPorId(int id) {
-        for (Funcionario f : funcionarios) {
-            if (f.getId() == id) {
-                return f;
-            }
-        }
+        for (Funcionario f : funcionarios) if (f.getId() == id) return f;
         return null;
     }
 
-    // UPDATE → atualizar(int id, ...campos...): retorna boolean
     public boolean atualizar(int id, String nome, double salario, String matricula) {
         Funcionario f = buscarPorId(id);
-        if (f != null) {
-            if (nome != null && !nome.trim().isEmpty()) {
-                f.setNome(nome.trim());
-            }
-            if (salario >= 0) {
-                f.setSalario(salario);
-            }
-            if (matricula != null) {
-                f.setMatricula(matricula.trim());
-            }
-            return true;
-        }
-        return false;
+        if (f == null) return false;
+        if (nome != null && !nome.trim().isEmpty()) f.setNome(nome.trim());
+        if (salario >= 0) f.setSalario(salario);
+        if (matricula != null) f.setMatricula(matricula.trim());
+        return true;
     }
 
-    // DELETE → removerPorId(int id): retorna boolean
     public boolean removerPorId(int id) {
-        Funcionario f = buscarPorId(id);
-        if (f != null) {
-            return funcionarios.remove(f);
+        for (int i = 0; i < funcionarios.size(); i++) {
+            if (funcionarios.get(i).getId() == id) {
+                funcionarios.remove(i);
+                return true;
+            }
         }
         return false;
     }

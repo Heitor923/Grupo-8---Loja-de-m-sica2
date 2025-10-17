@@ -1,18 +1,55 @@
-## Getting Started
+# Mini Sistema de Cadastro (Java, Console)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este é um sistema simples em Java que roda no **console** e permite cadastrar, listar, atualizar e excluir **Funcionários**, **Produtos** e **Clientes**. Tudo fica guardado em memória usando `ArrayList`, sem precisar de banco de dados.
 
-## Folder Structure
+O `id` é automático; você só digita os outros campos.
 
-The workspace contains two folders by default, where:
+## Como usar
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+**Menus principais:**
+- 1) Funcionários
+- 2) Produtos
+- 3) Clientes
+- 4) Cadastrar Cliente rápido
+- 5) Cadastrar Produto rápido
+- 0) Sair
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+**Submenu de cada entidade:**
+- 1) Cadastrar
+- 2) Listar
+- 3) Buscar por ID
+- 4) Atualizar
+- 5) Excluir
+- 0) Voltar
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+> Dica: se deixar o campo em branco ao atualizar, o valor atual continua.
 
-## Dependency Management
+## Regras simples
+- Nome é obrigatório.
+- Salário, preço e quantidade não podem ser negativos.
+- Mensagens no console mostram se deu sucesso ou erro.
+- `id` sempre gerado pelo sistema.
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+## Como compilar e rodar
+
+**No terminal:**
+```bash
+# Compilar
+javac -d out src/com/MiniSistemaDeCadastro/entidades/*.java src/com/MiniSistemaDeCadastro/RepositoryMemoria/*.java src/com/MiniSistemaDeCadastro/Main.java
+
+# Rodar
+java -cp out com.MiniSistemaDeCadastro.Main
+```
+
+**Na IDE:**  
+Importe o projeto, marque `src` como fonte, e execute a classe `Main`.
+
+## Teste rápido
+1. Cadastre 2 funcionários, 2 produtos e 2 clientes.  
+2. Tente atualizar um deles.  
+3. Tente excluir outro.  
+4. Liste tudo pra ver se funcionou.
+
+---
+
+É isso! O sistema é bem simples e feito só com Java puro.

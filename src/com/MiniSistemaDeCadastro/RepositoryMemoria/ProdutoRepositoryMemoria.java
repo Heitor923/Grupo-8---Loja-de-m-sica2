@@ -14,10 +14,18 @@ public class ProdutoRepositoryMemoria {
         return p;
     }
 
-    public List<Produto> listar() { return produtos; }
+    public List<Produto> listar() {
+        return produtos;
+    }
 
     public Produto buscarPorId(int id) {
-        return produtos.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+        for (int i = 0; i < produtos.size(); i++) {
+            Produto p = produtos.get(i);
+            if (p.getId() == id) {
+                return p;
+            }
+        }
+        return null;
     }
 
     public boolean atualizar(int id, String nome, double preco, int quantidade) {
@@ -32,6 +40,12 @@ public class ProdutoRepositoryMemoria {
     }
 
     public boolean removerPorId(int id) {
-        return produtos.removeIf(p -> p.getId() == id);
+        for (int i = 0; i < produtos.size(); i++) {
+            if (produtos.get(i).getId() == id) {
+                produtos.remove(i);
+                return true;
+            }
+        }
+        return false;
     }
 }
