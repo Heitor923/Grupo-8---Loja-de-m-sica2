@@ -1,4 +1,4 @@
-package com.lojaDeMusica.entidades;
+package com.MiniSistemaDeCadastro.entidades;
 
 public class Cliente {
  private int id;
